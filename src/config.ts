@@ -225,7 +225,6 @@ export const aboutConfig: AboutConfig = {
         'В июне 2026 года планируется первый летний научный лагерь, где учащиеся будут работать над проектами в команде и общаться с экспертами.',
     },
   ],
-  conclusion: '«Новая наука» ждет вас!',
 };
 
 export const identitySectionConfig: IdentitySectionConfig = {

@@ -16,7 +16,7 @@ export function BrowserTabs({ tabs }: BrowserTabsProps) {
   const [activeTab, setActiveTab] = useState(tabs[0]?.id || '');
 
   return (
-    <div className="w-full overflow-hidden rounded-[28px] border border-kaleo-earth/10 bg-kaleo-cream/80 shadow-[0_30px_80px_rgba(42,42,42,0.12)] backdrop-blur-sm">
+    <div className="w-full overflow-visible rounded-[28px] border border-kaleo-earth/10 bg-kaleo-cream/80 shadow-[0_30px_80px_rgba(42,42,42,0.12)] backdrop-blur-sm">
       <div className="flex items-center gap-3 border-b border-kaleo-earth/10 bg-kaleo-cream px-3 py-3 md:gap-4 md:px-5 md:py-4">
         <div className="flex items-center gap-2">
           <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
@@ -48,7 +48,7 @@ export function BrowserTabs({ tabs }: BrowserTabsProps) {
         </div>
       </div>
 
-      <div className="flex items-end gap-1 overflow-x-auto bg-kaleo-cream/90 px-2 pt-2 md:px-3 md:pt-3">
+      <div className="kaleo-scrollbar flex items-end gap-1 overflow-x-auto bg-kaleo-cream/90 px-2 pb-2 pt-2 md:px-3 md:pt-3">
         {tabs.map((tab) => (
           <button
             key={tab.id}

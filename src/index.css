@@ -217,6 +217,27 @@
       transform: translateX(-25%);
     }
   }
+
+  .kaleo-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(140, 123, 107, 0.95) rgba(243, 240, 235, 0.22);
+  }
+
+  .kaleo-scrollbar::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+
+  .kaleo-scrollbar::-webkit-scrollbar-track {
+    background: rgba(243, 240, 235, 0.18);
+    border-radius: 9999px;
+  }
+
+  .kaleo-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(140, 123, 107, 0.95);
+    border: 2px solid rgba(243, 240, 235, 0.18);
+    border-radius: 9999px;
+  }
   
   /* Gradient mask for text over images */
   .gradient-mask-bottom {

@@ -97,13 +97,6 @@ const About = () => {
           </div>
         </div>
 
-        <div className="about-reveal grid border-t border-kaleo-earth/10 pt-8 md:grid-cols-12">
-          <div className="md:col-span-7 md:col-start-6">
-            <p className="font-body text-base leading-8 text-kaleo-earth/56 md:text-lg">
-              {aboutConfig.conclusion}
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
