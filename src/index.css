@@ -204,6 +204,19 @@
   .image-reveal.revealed {
     clip-path: inset(0 0 0 0);
   }
+
+  .animate-footer-marquee {
+    animation: footerMarquee 26s linear infinite;
+  }
+
+  @keyframes footerMarquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-25%);
+    }
+  }
   
   /* Gradient mask for text over images */
   .gradient-mask-bottom {

@@ -9,6 +9,7 @@ const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const logoSrc = `${import.meta.env.BASE_URL}images/IMG_4707.PNG`;
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -50,24 +51,35 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-end px-5 pb-16 pt-28 md:px-8 md:pb-24">
-        <div ref={textRef} className="max-w-4xl text-kaleo-cream">
-          <p className="font-body text-xs uppercase tracking-[0.28em] text-kaleo-cream/70">
-            {heroConfig.eyebrow}
-          </p>
-          <h1 className="mt-5 font-display text-display">{heroConfig.title}</h1>
-          <p className="mt-6 max-w-2xl font-body text-base leading-7 text-kaleo-cream/78 md:text-lg">
-            {heroConfig.subtitle}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {heroConfig.detailChips.map((chip) => (
-              <span
-                key={chip}
-                className="rounded-full border border-kaleo-cream/20 bg-kaleo-cream/10 px-4 py-2 font-body text-xs uppercase tracking-[0.18em] text-kaleo-cream/78"
-              >
-                {chip}
-              </span>
-            ))}
+        <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+          <div className="order-1 w-[280px] self-center sm:w-[340px] lg:order-2 lg:w-[520px] lg:self-center xl:w-[600px]">
+            <img
+              src={logoSrc}
+              alt="Логотип ГНОУ «Новая Наука»"
+              className="h-auto w-full object-contain [filter:brightness(0)_invert(1)] drop-shadow-[0_18px_42px_rgba(0,0,0,0.35)]"
+            />
           </div>
+
+          <div ref={textRef} className="order-2 max-w-4xl text-kaleo-cream lg:order-1">
+            <p className="font-body text-xs uppercase tracking-[0.28em] text-kaleo-cream/70">
+              {heroConfig.eyebrow}
+            </p>
+            <h1 className="mt-5 font-display text-display">{heroConfig.title}</h1>
+            <p className="mt-6 max-w-2xl font-body text-base leading-7 text-kaleo-cream/78 md:text-lg">
+              {heroConfig.subtitle}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {heroConfig.detailChips.map((chip) => (
+                <span
+                  key={chip}
+                  className="rounded-full border border-kaleo-cream/20 bg-kaleo-cream/10 px-4 py-2 font-body text-xs uppercase tracking-[0.18em] text-kaleo-cream/78"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

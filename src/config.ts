@@ -125,6 +125,7 @@ export interface FooterSocialItem {
 }
 
 export interface FooterConfig {
+  marqueeText: string;
   heading: string;
   description: string;
   contactLabel: string;
@@ -476,6 +477,7 @@ export const breathSectionConfig: BreathSectionConfig = {
 };
 
 export const footerConfig: FooterConfig = {
+  marqueeText: 'НОВАЯ НАУКА • ИССЛЕДУЙ • СОЗДАВАЙ • ОТКРЫВАЙ • ГНОУ • ',
   heading: 'Наука начинается с вопроса, продолжается исследованием и приводит к открытию.',
   description:
     'ГНОУ «Новая Наука» объединяет учеников, идеи, проекты и исследовательские инициативы в живое научное сообщество гимназии.',

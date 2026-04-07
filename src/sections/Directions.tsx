@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Beaker, BookOpen, Calculator, Languages, User, Users, X } from 'lucide-react';
+import { Baby, Beaker, BookOpen, Calculator, Languages, User, Users, X } from 'lucide-react';
 import BrowserTabs from '../components/BrowserTabs';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -99,10 +99,10 @@ const directions: Direction[] = [
   },
   {
     id: 'young-chemists',
-    label: 'Секция естественных наук',
-    icon: <Beaker className="h-4 w-4" />,
+    label: 'Юные химики и экологи',
+    icon: <Baby className="h-4 w-4" />,
     subjects: 'ОБЪЕДИНЕНИЕ ПО ИНТЕРЕСАМ «ЮНЫЕ ХИМИКИ И ЭКОЛОГИ»',
-    leaders: ['Макарова Жанна Петровна', 'Гавриленко Арина Викторовна'],
+    leaders: ['Макарова Жанна Петровна'],
     description:
       'Секция естественных наук объединяет химию, биологию, географию и экологию. Работа строится через практические мастер-классы, исследовательские задания, биолого-экологические конкурсы, онлайн-недели и живой эксперимент.',
     activities: [
@@ -116,13 +116,12 @@ const directions: Direction[] = [
     ],
     highlights: [
       'В структуре ГНОУ это секция естественных наук, которая объединяет химию, биологию, географию и экологию и работает как пространство практики, а не только теории.',
-      'В рабочих планах ГНОУ на 2024/2025 и 2025/2026 учебные годы для этого направления отдельно зафиксированы подготовка к конкурсу научных биолого-экологических работ, участие в фестивале наук, мастер-классы и предметные недели.',
+      'В рабочих планах ГНОУ на 2025/2026 учебный год для этого направления отдельно зафиксированы подготовка к конкурсу научных биолого-экологических работ, участие в фестивале наук, мастер-классы и предметные недели.',
       'Портфолио показывает конкретные форматы работы секции: выращивание кристаллов, мыловарение, изготовление моделей молекул, создание собственного аромата духов и проведение эффектных химических опытов.',
       'Для химико-биологической онлайн-недели используются опросники «Химия вокруг нас» и «Биология вокруг нас», опыты «Трехслойная жидкость», «Резиновое яйцо», «Лавовая лампа», прямые эфиры и онлайн-газета «Новости химической науки».',
       'Такой формат позволяет соединять исследование, эксперимент, экологическое мышление и публичную презентацию результатов.',
     ],
     resources: [
-      { label: 'Портфолио общества в Markdown', href: `${import.meta.env.BASE_URL}images/young-chemists/portfolio.md` },
       { label: 'Материалы секции: Instagram-недели', href: `${import.meta.env.BASE_URL}images/young-chemists/image30.jpeg` },
     ],
     images: [
@@ -177,6 +176,18 @@ const directions: Direction[] = [
       { src: `${import.meta.env.BASE_URL}images/languages/Picture8.png`, alt: 'Достижения секции иностранных языков 3' },
     ],
   },
+  {
+    id: 'chem',
+    label: 'Секция естественных наук',
+    icon: <Beaker className="h-4 w-4" />,
+    subjects: 'СЕКЦИЯ ЕСТЕСТВЕННЫХ НАУК',
+    leaders: ['Макарова Жанна Петровна'],
+    description: 'Химия, биология, география, экология.',
+    activities: [],
+    highlights: [],
+    images: [],
+    achievements: [],
+  }
 ];
 
 function DirectionContent({ direction }: { direction: Direction }) {
