@@ -50,8 +50,8 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(28,28,28,0.28),rgba(28,28,28,0.72)_55%,rgba(234,228,217,0.14))]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-end px-5 pb-16 pt-28 md:px-8 md:pb-24">
-        <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center justify-center px-5 py-16 md:px-8 md:py-24 lg:py-28">
+        <div className="flex w-full flex-col gap-8 lg:max-w-6xl lg:flex-row lg:items-center lg:justify-center lg:gap-12">
           <div className="order-1 w-[280px] self-center sm:w-[340px] lg:order-2 lg:w-[520px] lg:self-center xl:w-[600px]">
             <img
               src={logoSrc}
@@ -60,7 +60,7 @@ const Hero = () => {
             />
           </div>
 
-          <div ref={textRef} className="order-2 max-w-4xl text-kaleo-cream lg:order-1">
+          <div ref={textRef} className="order-2 max-w-4xl text-center text-kaleo-cream lg:order-1 lg:max-w-2xl">
             <p className="font-body text-xs uppercase tracking-[0.28em] text-kaleo-cream/70">
               {heroConfig.eyebrow}
             </p>
@@ -68,16 +68,6 @@ const Hero = () => {
             <p className="mt-6 max-w-2xl font-body text-base leading-7 text-kaleo-cream/78 md:text-lg">
               {heroConfig.subtitle}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {heroConfig.detailChips.map((chip) => (
-                <span
-                  key={chip}
-                  className="rounded-full border border-kaleo-cream/20 bg-kaleo-cream/10 px-4 py-2 font-body text-xs uppercase tracking-[0.18em] text-kaleo-cream/78"
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
           </div>
 
         </div>

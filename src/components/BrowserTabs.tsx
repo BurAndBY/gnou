@@ -34,7 +34,7 @@ export function BrowserTabs({ tabs }: BrowserTabsProps) {
                 d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
               />
             </svg>
-            <span className="truncate font-body text-xs text-kaleo-earth/50 md:text-sm">новая-наука.гимназия.рф</span>
+            <span className="truncate font-body text-xs text-kaleo-earth/50 md:text-sm">https://burandby.github.io/gnou</span>
           </div>
         </div>
 
@@ -53,9 +53,10 @@ export function BrowserTabs({ tabs }: BrowserTabsProps) {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
+            aria-label={tab.label}
             className={`
-              group flex min-w-[156px] max-w-[220px] items-center gap-2 rounded-t-[18px] px-4 py-3 font-body text-sm font-medium
-              transition-all duration-200 md:min-w-[180px] md:px-5 md:py-3.5 md:text-[15px]
+              group flex min-w-[52px] items-center justify-center gap-2 rounded-t-[18px] px-3 py-3 font-body text-sm font-medium
+              transition-all duration-200 md:min-w-[180px] md:max-w-[220px] md:justify-start md:px-5 md:py-3.5 md:text-[15px]
               ${activeTab === tab.id
                 ? 'border border-b-0 border-kaleo-earth/10 bg-kaleo-sand text-kaleo-earth'
                 : 'bg-[#e2dbce] text-kaleo-earth/55 hover:bg-[#ddd4c6] hover:text-kaleo-earth/80'
@@ -63,10 +64,10 @@ export function BrowserTabs({ tabs }: BrowserTabsProps) {
             `}
           >
             <span className="flex-shrink-0">{tab.icon}</span>
-            <span className="flex-1 truncate text-left">{tab.label}</span>
+            <span className="hidden flex-1 truncate text-left md:block">{tab.label}</span>
             <span
               className={`
-                flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full
+                hidden h-4 w-4 flex-shrink-0 items-center justify-center rounded-full md:flex
                 transition-colors
                 ${activeTab === tab.id ? 'hover:bg-kaleo-earth/10' : 'hover:bg-kaleo-earth/10'}
               `}
@@ -75,7 +76,7 @@ export function BrowserTabs({ tabs }: BrowserTabsProps) {
             </span>
           </button>
         ))}
-        <button className="mb-1 rounded-lg p-2 transition-colors hover:bg-kaleo-sand">
+        <button className="mb-1 hidden rounded-lg p-2 transition-colors hover:bg-kaleo-sand md:block">
           <Plus className="h-4 w-4 text-kaleo-earth/40" />
         </button>
       </div>

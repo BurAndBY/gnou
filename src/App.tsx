@@ -9,6 +9,7 @@ import Hero from './sections/Hero';
 import NarrativeText from './sections/NarrativeText';
 import About from './sections/About';
 import IdentitySection from './sections/IdentitySection';
+import Universities from './sections/Universities';
 import Directions from './sections/Directions';
 import EcoRoutePanel from './sections/EcoRoutePanel';
 import Leadership from './sections/Leadership';
@@ -61,6 +62,9 @@ function App() {
 
       {/* Motto, Credo, Anthem */}
       <IdentitySection />
+
+      {/* University Partnerships */}
+      <Universities />
 
       {/* Original Browser Window Section */}
       <Directions />

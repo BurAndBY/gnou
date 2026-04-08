@@ -24,10 +24,10 @@ interface Direction {
 const directions: Direction[] = [
   {
     id: 'philology',
-    label: 'Литературные горизонты',
+    label: 'Общественно-гуманитарная секция',
     icon: <BookOpen className="h-4 w-4" />,
-    subjects: 'Литературные и исторические горизонты',
-    leaders: ['Скавинская Елена Владимировна', 'Пацель Анна Мечиславовна'],
+    subjects: 'Русский язык и литература, белорусский язык и литература, история и обществоведение',
+    leaders: ['Скавинская Елена Владимировна (учитель русского языка и литературы)'],
     description: 'Изучение языка, литературы и культуры через исследовательские проекты и творческие работы.',
     activities: [
       'Лингвистические исследования',
@@ -38,10 +38,10 @@ const directions: Direction[] = [
   },
   {
     id: 'stem',
-    label: 'Научно-техническая секция',
+    label: 'Физико-математическая секция',
     icon: <Calculator className="h-4 w-4" />,
-    subjects: 'STEM-СЕКЦИЯ',
-    leaders: ['Невер Елена Петровна'],
+    subjects: 'Математика, информатика, физика, астрономия, трудовое обучение',
+    leaders: ['Невер Елена Петровна (учитель математики)'],
     description: 'Математика, информатика, физика, астрономия и исследовательская работа, построенная вокруг турниров юных математиков, конференций и проектных задач.',
     activities: [
       'Турниры юных математиков',
@@ -99,65 +99,31 @@ const directions: Direction[] = [
   },
   {
     id: 'young-chemists',
-    label: 'Юные химики и экологи',
+    label: 'Юные исследователи',
     icon: <Baby className="h-4 w-4" />,
-    subjects: 'ОБЪЕДИНЕНИЕ ПО ИНТЕРЕСАМ «ЮНЫЕ ХИМИКИ И ЭКОЛОГИ»',
-    leaders: ['Макарова Жанна Петровна'],
+    subjects: 'Начальная школа',
+    leaders: ['Пивоварчик Юлия Алексеевна (учитель начальных классов)'],
     description:
-      'Секция естественных наук объединяет химию, биологию, географию и экологию. Работа строится через практические мастер-классы, исследовательские задания, биолого-экологические конкурсы, онлайн-недели и живой эксперимент.',
+      'Направление для младших школьников, где первые исследовательские навыки формируются через наблюдение, простые проекты, творчество и знакомство с наукой.',
     activities: [
-      'Выращивание кристаллов различного цвета',
-      'Мыловарение и мастер-класс «Мыло своими руками»',
-      'Изготовление моделей молекул',
-      'Создание собственного аромата духов',
-      'Проведение эффектных химических опытов',
-      'Подготовка к научным биолого-экологическим конкурсам',
-      'Онлайн-недели химии и биологии на платформе Instagram',
+      'Первые исследовательские проекты',
+      'Наблюдения и мини-эксперименты',
+      'Творческие задания и презентации',
+      'Знакомство с научными темами в доступной форме',
     ],
     highlights: [
-      'В структуре ГНОУ это секция естественных наук, которая объединяет химию, биологию, географию и экологию и работает как пространство практики, а не только теории.',
-      'В рабочих планах ГНОУ на 2025/2026 учебный год для этого направления отдельно зафиксированы подготовка к конкурсу научных биолого-экологических работ, участие в фестивале наук, мастер-классы и предметные недели.',
-      'Портфолио показывает конкретные форматы работы секции: выращивание кристаллов, мыловарение, изготовление моделей молекул, создание собственного аромата духов и проведение эффектных химических опытов.',
-      'Для химико-биологической онлайн-недели используются опросники «Химия вокруг нас» и «Биология вокруг нас», опыты «Трехслойная жидкость», «Резиновое яйцо», «Лавовая лампа», прямые эфиры и онлайн-газета «Новости химической науки».',
-      'Такой формат позволяет соединять исследование, эксперимент, экологическое мышление и публичную презентацию результатов.',
+      'Секция помогает младшим школьникам сделать первые шаги в исследовательской деятельности и научиться наблюдать, сравнивать и делать выводы.',
+      'Работа строится в формате доступных возрасту мини-проектов, творческих заданий и практических занятий.',
     ],
-    resources: [
-      { label: 'Материалы секции: Instagram-недели', href: `${import.meta.env.BASE_URL}images/young-chemists/image30.jpeg` },
-    ],
-    images: [
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image61.jpeg`, alt: 'Практическая работа по выращиванию кристаллов' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image69.jpg`, alt: 'Работы учащихся на мастер-классе по мыловарению' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image79.jpeg`, alt: 'Мастер-класс «Мыло своими руками»' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image87.jpeg`, alt: 'Изготовление моделей молекул на занятии' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image95.jpeg`, alt: 'Командная работа с моделями молекул' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image97.jpg`, alt: 'Создание собственного аромата духов' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image100.jpg`, alt: 'Эффектный химический опыт' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image102.jpg`, alt: 'Демонстрация химического эксперимента' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_1_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 1' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_2_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 2' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_3_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 3' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_4_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 4' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_5_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 5' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_6_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 6' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_7_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 7' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_8_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 8' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_9_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 9' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_10_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 10' },
-      { src: `${import.meta.env.BASE_URL}images/youth/photo_11_2026-04-07_21-57-44.jpg`, alt: 'Юные экологи: фото 11' },
-    ],
-    achievements: [
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image30.jpeg`, alt: 'Организация предметных онлайн-недель химии и биологии' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image36.jpeg`, alt: 'Пример сторис для онлайн-недели химии и биологии' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image85.jpeg`, alt: 'Выступление на семинаре с мастер-классом' },
-      { src: `${import.meta.env.BASE_URL}images/young-chemists/image108.jpeg`, alt: 'Практический результат химического эксперимента' },
-    ],
+    images: [],
+    achievements: [],
   },
   {
     id: 'languages',
-    label: 'Иностранные языки',
+    label: 'Секция иностранных языков',
     icon: <Languages className="h-4 w-4" />,
-    subjects: 'СЕКЦИЯ ИНОСТРАННЫХ ЯЗЫКОВ',
-    leaders: ['Кузякова Ольга Викторовна'],
+    subjects: 'Английский язык, китайский язык и немецкий язык',
+    leaders: ['Кузякова Ольга Викторовна (учитель английского языка)'],
     description: 'Английский язык, китайский язык и немецкий язык.',
     activities: [
       'Английские детективные квесты',
@@ -191,14 +157,27 @@ const directions: Direction[] = [
     id: 'chem',
     label: 'Секция естественных наук',
     icon: <Beaker className="h-4 w-4" />,
-    subjects: 'СЕКЦИЯ ЕСТЕСТВЕННЫХ НАУК',
-    leaders: ['Макарова Жанна Петровна'],
-    description: 'Химия, биология, география, экология.',
-    activities: [],
-    highlights: [],
+    subjects: 'Химия, биология, география, экология',
+    leaders: ['Макарова Жанна Петровна (учитель биологии)'],
+    description: 'Секция объединяет естественнонаучные дисциплины и выстраивает работу вокруг наблюдений, полевых практик, экологических инициатив и исследовательских проектов.',
+    activities: [
+      'Исследовательские проекты по биологии, экологии и географии',
+      'Наблюдение за природными объектами и сезонными изменениями',
+      'Подготовка к конкурсам и конференциям естественнонаучного профиля',
+      'Экологические акции и работа на экотропе',
+      'Практические занятия и мини-экспедиции',
+      'Оформление наблюдений, выводов и презентация результатов',
+    ],
+    highlights: [
+      'Секция естественных наук формирует целостный взгляд на окружающий мир через биологию, химию, географию и экологию, соединяя кабинетную работу с наблюдением за реальной средой.',
+      'Участники секции работают с исследовательскими темами, учатся ставить вопросы, фиксировать результаты наблюдений, сопоставлять факты и делать аргументированные выводы.',
+      'Особое место занимает экологическая практика: работа на школьной экотропе, природоохранные инициативы, изучение местных экосистем и применение знаний в реальных условиях.',
+      'Секция служит базой для подготовки учебных проектов, выступлений на конференциях и участия в мероприятиях естественнонаучного профиля.',
+    ],
     images: [],
     achievements: [],
-  }
+    resources: [],
+  },
 ];
 
 function DirectionContent({ direction }: { direction: Direction }) {
@@ -262,74 +241,6 @@ function DirectionContent({ direction }: { direction: Direction }) {
                 {highlight}
               </p>
             ))}
-          </div>
-        </div>
-      )}
-
-      {direction.resources && (
-        <div>
-          <h4 className="mb-3 font-body text-xs uppercase tracking-wider text-kaleo-earth/45">
-            Материалы и документы
-          </h4>
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-            {direction.resources.map((resource) => (
-              <a
-                key={resource.href}
-                href={resource.href}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-xl border border-kaleo-earth/10 bg-kaleo-cream px-4 py-3 font-body text-sm text-kaleo-earth/72 transition hover:border-kaleo-terracotta hover:text-kaleo-earth"
-              >
-                {resource.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {direction.images && (
-        <div>
-          <h4 className="mb-3 font-body text-xs uppercase tracking-wider text-kaleo-earth/45">
-            Галерея
-          </h4>
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
-            {direction.images.map((image) => (
-              <button
-                key={image.src}
-                type="button"
-                onClick={() => setSelectedImage(image)}
-                className="overflow-hidden rounded-[22px] border border-kaleo-earth/10 bg-kaleo-cream text-left transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(42,42,42,0.08)]"
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className={`h-64 w-full object-cover transition-transform ${image.imageClassName ?? ''}`}
-                  style={image.imageStyle}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {direction.achievements && (
-        <div>
-          <h4 className="mb-3 font-body text-xs uppercase tracking-wider text-kaleo-earth/45">
-            Достижения
-          </h4>
-          <div className="max-h-[60rem] overflow-y-auto rounded-[24px] border border-kaleo-earth/10 bg-kaleo-cream/55 p-3 md:p-4">
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {direction.achievements.map((image) => (
-                <button
-                  key={image.src}
-                  type="button"
-                  onClick={() => setSelectedImage(image)}
-                  className="overflow-hidden rounded-[22px] border border-kaleo-earth/10 bg-kaleo-cream text-left transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(42,42,42,0.08)]"
-                >
-                  <img src={image.src} alt={image.alt} className="h-64 w-full object-cover" />
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       )}

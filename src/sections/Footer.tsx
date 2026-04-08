@@ -79,7 +79,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-1">
+          <div>
             <div>
               <p className="font-body text-xs uppercase tracking-[0.2em] text-kaleo-terracotta">
                 {footerConfig.contactLabel}
@@ -109,19 +109,6 @@ const Footer = () => {
                     </div>
                   )
                 )}
-              </div>
-            </div>
-
-            <div>
-              <p className="font-body text-xs uppercase tracking-[0.2em] text-kaleo-terracotta">
-                {footerConfig.locationLabel}
-              </p>
-              <div className="mt-5 rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
-                {footerConfig.address.map((line) => (
-                  <p key={line} className="font-body text-sm leading-6 text-kaleo-cream/72">
-                    {line}
-                  </p>
-                ))}
               </div>
             </div>
           </div>
