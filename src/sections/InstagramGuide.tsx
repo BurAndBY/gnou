@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronDown, FileText, Instagram, Link as LinkIcon } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, FileText, Instagram, Link as LinkIcon } from 'lucide-react';
+import { getDocument, GlobalWorkerOptions, type PDFDocumentProxy } from 'pdfjs-dist';
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 
 gsap.registerPlugin(ScrollTrigger);
+GlobalWorkerOptions.workerSrc = pdfWorker;
 
 const methodGuideUrl = `${import.meta.env.BASE_URL}Методичка онлайн-недели.pdf`;
 
@@ -116,6 +119,192 @@ const experienceBroadcasts = [
     description: 'ХIII республиканский рождественский фестиваль педагогического мастерства Академии последипломного образования.',
   },
 ];
+
+function PdfViewer({ url }: { url: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [documentProxy, setDocumentProxy] = useState<PDFDocumentProxy | null>(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pagesCount, setPagesCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRendering, setIsRendering] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [viewportTick, setViewportTick] = useState(0);
+
+  useEffect(() => {
+    let isMounted = true;
+    const loadingTask = getDocument(url);
+
+    setIsLoading(true);
+    setError(null);
+
+    loadingTask.promise
+      .then((pdf) => {
+        if (!isMounted) {
+          void pdf.destroy();
+          return;
+        }
+
+        setDocumentProxy(pdf);
+        setPagesCount(pdf.numPages);
+        setPageNumber(1);
+      })
+      .catch(() => {
+        if (isMounted) {
+          setError('Не удалось загрузить методичку.');
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+      void loadingTask.destroy();
+    };
+  }, [url]);
+
+  useEffect(() => {
+    const handleResize = () => setViewportTick((value) => value + 1);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!documentProxy || !canvasRef.current || !frameRef.current) return;
+
+    let cancelled = false;
+    let renderTask: { cancel?: () => void; promise: Promise<unknown> } | null = null;
+
+    const renderPage = async () => {
+      try {
+        setIsRendering(true);
+        const page = await documentProxy.getPage(pageNumber);
+        const containerWidth = Math.max(frameRef.current?.clientWidth ?? 0, 320);
+        const baseViewport = page.getViewport({ scale: 1 });
+        const scale = Math.min(1.6, containerWidth / baseViewport.width);
+        const viewport = page.getViewport({ scale });
+        const canvas = canvasRef.current;
+
+        if (!canvas) return;
+
+        const context = canvas.getContext('2d');
+        if (!context) {
+          setError('Не удалось подготовить область просмотра PDF.');
+          return;
+        }
+
+        const outputScale = window.devicePixelRatio || 1;
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = `${viewport.width}px`;
+        canvas.style.height = `${viewport.height}px`;
+
+        renderTask = page.render({
+          canvas,
+          canvasContext: context,
+          viewport,
+          transform: outputScale === 1 ? undefined : [outputScale, 0, 0, outputScale, 0, 0],
+        });
+
+        await renderTask.promise;
+
+        if (!cancelled) {
+          setError(null);
+        }
+      } catch {
+        if (!cancelled) {
+          setError('Не удалось отрисовать страницу методички.');
+        }
+      } finally {
+        if (!cancelled) {
+          setIsRendering(false);
+        }
+      }
+    };
+
+    void renderPage();
+
+    return () => {
+      cancelled = true;
+      renderTask?.cancel?.();
+    };
+  }, [documentProxy, pageNumber, viewportTick]);
+
+  return (
+    <div className="space-y-5">
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="inline-flex items-center gap-2 rounded-full border border-kaleo-earth/10 bg-kaleo-sand px-3 py-1 font-body text-xs uppercase tracking-[0.2em] text-kaleo-terracotta">
+          <FileText className="h-3.5 w-3.5" />
+          Документ
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setPageNumber((value) => Math.max(1, value - 1))}
+            disabled={pageNumber <= 1 || isLoading || isRendering}
+            className="inline-flex items-center gap-2 rounded-full border border-kaleo-earth/15 bg-kaleo-sand px-4 py-2 font-body text-sm text-kaleo-earth transition hover:border-kaleo-terracotta hover:text-kaleo-terracotta disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            Назад
+          </button>
+          <div className="rounded-full border border-kaleo-earth/10 bg-kaleo-cream px-4 py-2 font-body text-sm text-kaleo-earth/65">
+            Страница {pagesCount ? pageNumber : 0} из {pagesCount || '...'}
+          </div>
+          <button
+            type="button"
+            onClick={() => setPageNumber((value) => Math.min(pagesCount, value + 1))}
+            disabled={!pagesCount || pageNumber >= pagesCount || isLoading || isRendering}
+            className="inline-flex items-center gap-2 rounded-full border border-kaleo-earth/15 bg-kaleo-sand px-4 py-2 font-body text-sm text-kaleo-earth transition hover:border-kaleo-terracotta hover:text-kaleo-terracotta disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Вперёд
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="font-body text-sm text-kaleo-earth/55">
+          Методичка отображается прямо на странице через PDF.js.
+        </div>
+
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center justify-center rounded-full border border-kaleo-earth/15 bg-kaleo-sand px-5 py-3 font-body text-sm text-kaleo-earth transition hover:border-kaleo-terracotta hover:text-kaleo-terracotta"
+        >
+          Открыть в новой вкладке
+        </a>
+      </div>
+
+      <div
+        ref={frameRef}
+        data-lenis-prevent
+        className="overflow-hidden rounded-[24px] border border-kaleo-earth/10 bg-white p-2 md:p-4"
+      >
+        <div className="max-h-[72vh] min-h-[560px] overflow-auto rounded-[18px] bg-white">
+          {error ? (
+            <div className="flex min-h-[420px] items-center justify-center px-6 text-center font-body text-sm text-[#444]">
+              {error}
+            </div>
+          ) : isLoading ? (
+            <div className="flex min-h-[420px] items-center justify-center font-body text-sm text-[#444]">
+              Загрузка PDF...
+            </div>
+          ) : (
+            <div className="flex justify-center p-2 md:p-4">
+              <canvas ref={canvasRef} />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const InstagramGuide = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -360,32 +549,7 @@ const InstagramGuide = () => {
           </button>
 
           <div className={`${isOpen ? 'block' : 'hidden'} border-t border-kaleo-earth/10 px-5 py-5 md:px-8 md:py-8`}>
-            <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div className="inline-flex items-center gap-2 rounded-full border border-kaleo-earth/10 bg-kaleo-sand px-3 py-1 font-body text-xs uppercase tracking-[0.2em] text-kaleo-terracotta">
-                <FileText className="h-3.5 w-3.5" />
-                Документ
-              </div>
-
-              <a
-                href={methodGuideUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-kaleo-earth/15 bg-kaleo-sand px-5 py-3 font-body text-sm text-kaleo-earth transition hover:border-kaleo-terracotta hover:text-kaleo-terracotta"
-              >
-                Открыть в новой вкладке
-              </a>
-            </div>
-
-            <div
-              data-lenis-prevent
-              className="overflow-hidden rounded-[24px] border border-kaleo-earth/10 bg-white"
-            >
-              <iframe
-                src={methodGuideUrl}
-                title="Методичка"
-                className="h-[72vh] min-h-[560px] w-full"
-              />
-            </div>
+            <PdfViewer url={methodGuideUrl} />
           </div>
         </div>
       </div>

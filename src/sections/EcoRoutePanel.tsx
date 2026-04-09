@@ -7,6 +7,10 @@ gsap.registerPlugin(ScrollTrigger);
 const links = [
   { label: 'Сайт виртуальной экотропы', href: 'https://burandby.github.io/ecoroute' },
   { label: 'Telegram-бот', href: 'https://t.me/ecoroutbg_bot' },
+  {
+    label: 'Методичка по экотропе',
+    href: `${import.meta.env.BASE_URL}Методичка по созданию ЭкоТРоп.pdf`,
+  },
 ];
 
 const highlights = [
