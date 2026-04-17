@@ -7,6 +7,20 @@ import BrowserTabs from '../components/BrowserTabs';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+
+interface DirectionImage {
+  src: string;
+  alt: string;
+  imageClassName?: string;
+  imageStyle?: React.CSSProperties;
+}
+
+interface DirectionResource {
+  label: string;
+  href: string;
+}
+
 interface Direction {
   id: string;
   label: string;
@@ -16,10 +30,39 @@ interface Direction {
   description: string;
   activities: string[];
   highlights?: string[];
-  images?: { src: string; alt: string; imageClassName?: string; imageStyle?: React.CSSProperties }[];
-  achievements?: { src: string; alt: string; imageClassName?: string; imageStyle?: React.CSSProperties }[];
-  resources?: { label: string; href: string }[];
+  images?: DirectionImage[];
+  achievements?: DirectionImage[];
+  resources?: DirectionResource[];
 }
+
+const philologyResources: DirectionResource[] = [
+  { label: 'Гостиные (PPTX)', href: asset('images/lit/гостиные.pptx') },
+  { label: 'Литературная гостиная «Хатынь» (DOC)', href: asset('images/lit/лит гостиная хатынь.doc') },
+  { label: 'Литературные гостиные: фото (PPTX)', href: asset('images/lit/лит гостиные фото.pptx') },
+  { label: 'Литературная гостиная «Юные герои большой войны» (DOC)', href: asset('images/lit/лит_гостиная_юные_герои_большой_войны.doc') },
+  { label: 'Литературная гостиная Будай (DOCX)', href: asset('images/lit/литературная гостиная Будай.docx') },
+  { label: 'Методы и приёмы исследовательской деятельности (DOCX)', href: asset('images/lit/методы_и_приёмы_исследовательской_деятельности.docx') },
+  { label: 'Методы и приемы исследовательской деятельности (PPT)', href: asset('images/lit/Методы_и_приемы_исследовательской_деятельности.ppt') },
+  { label: 'Памятка по оформлению исследовательской работы (DOCX)', href: asset('images/lit/Памятка_по_оформления_исследов_работы.docx') },
+  { label: 'Проект (DOCX)', href: asset('images/lit/проект.docx') },
+  { label: 'Этапы подготовки к конкурсу исследовательских работ (DOCX)', href: asset('images/lit/Этапы_работы_по_подготовке_к_конкурсу_работ_исследовательского_характера.docx') },
+];
+
+const chemImages: DirectionImage[] = [
+  { src: asset('images/chem/photo_1_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 1' },
+  { src: asset('images/chem/photo_2_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 2' },
+  { src: asset('images/chem/photo_3_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 3' },
+  { src: asset('images/chem/photo_4_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 4' },
+];
+
+const chemAchievements: DirectionImage[] = [
+  { src: asset('images/chem/IMG_4930.JPG'), alt: 'Материалы секции естественных наук 1' },
+  { src: asset('images/chem/IMG_4931.JPG'), alt: 'Материалы секции естественных наук 2' },
+  { src: asset('images/chem/IMG_4932.JPG'), alt: 'Материалы секции естественных наук 3' },
+  { src: asset('images/chem/IMG_4933.JPG'), alt: 'Материалы секции естественных наук 4' },
+  { src: asset('images/chem/IMG_4934.JPG'), alt: 'Материалы секции естественных наук 5' },
+  { src: asset('images/chem/IMG_4935.JPG'), alt: 'Материалы секции естественных наук 6' },
+];
 
 const directions: Direction[] = [
   {
@@ -35,6 +78,7 @@ const directions: Direction[] = [
       'Поэтические мастер-классы',
       'Историко-культурные экспедиции',
     ],
+    resources: philologyResources,
   },
   {
     id: 'stem',
@@ -174,8 +218,8 @@ const directions: Direction[] = [
       'Особое место занимает экологическая практика: работа на школьной экотропе, природоохранные инициативы, изучение местных экосистем и применение знаний в реальных условиях.',
       'Секция служит базой для подготовки учебных проектов, выступлений на конференциях и участия в мероприятиях естественнонаучного профиля.',
     ],
-    images: [],
-    achievements: [],
+    images: chemImages,
+    achievements: chemAchievements,
     resources: [],
   },
 ];
@@ -240,6 +284,84 @@ function DirectionContent({ direction }: { direction: Direction }) {
               >
                 {highlight}
               </p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {direction.resources && direction.resources.length > 0 && (
+        <div>
+          <h4 className="mb-3 flex items-center gap-2 font-body text-xs uppercase tracking-wider text-kaleo-earth/45">
+            <BookOpen className="h-4 w-4" />
+            Документы и материалы
+          </h4>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {direction.resources.map((resource) => (
+              <a
+                key={resource.href}
+                href={resource.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-2xl border border-kaleo-earth/10 bg-kaleo-cream px-4 py-3 font-body text-sm text-kaleo-earth/72 transition hover:border-kaleo-earth/20 hover:bg-white"
+              >
+                {resource.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {direction.images && direction.images.length > 0 && (
+        <div>
+          <h4 className="mb-3 font-body text-xs uppercase tracking-wider text-kaleo-earth/45">
+            Фотогалерея
+          </h4>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {direction.images.map((image) => (
+              <button
+                key={image.src}
+                type="button"
+                onClick={() => setSelectedImage({ src: image.src, alt: image.alt })}
+                className="group overflow-hidden rounded-3xl border border-kaleo-earth/10 bg-kaleo-cream text-left transition hover:border-kaleo-earth/20"
+              >
+                <div className="aspect-[4/3] overflow-hidden bg-kaleo-sand">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className={`h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] ${image.imageClassName ?? ''}`}
+                    style={image.imageStyle}
+                  />
+                </div>
+                <div className="px-4 py-3 font-body text-sm text-kaleo-earth/68">{image.alt}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {direction.achievements && direction.achievements.length > 0 && (
+        <div>
+          <h4 className="mb-3 font-body text-xs uppercase tracking-wider text-kaleo-earth/45">
+            Достижения и материалы
+          </h4>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {direction.achievements.map((image) => (
+              <button
+                key={image.src}
+                type="button"
+                onClick={() => setSelectedImage({ src: image.src, alt: image.alt })}
+                className="group overflow-hidden rounded-3xl border border-kaleo-earth/10 bg-kaleo-cream text-left transition hover:border-kaleo-earth/20"
+              >
+                <div className="aspect-[4/3] overflow-hidden bg-kaleo-sand">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className={`h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] ${image.imageClassName ?? ''}`}
+                    style={image.imageStyle}
+                  />
+                </div>
+                <div className="px-4 py-3 font-body text-sm text-kaleo-earth/68">{image.alt}</div>
+              </button>
             ))}
           </div>
         </div>
