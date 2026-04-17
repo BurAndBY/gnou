@@ -12,6 +12,7 @@ const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+
 interface DirectionImage {
   src: string;
   alt: string;
+  caption?: string;
   imageClassName?: string;
   imageStyle?: React.CSSProperties;
 }
@@ -49,19 +50,19 @@ const philologyResources: DirectionResource[] = [
 ];
 
 const chemImages: DirectionImage[] = [
-  { src: asset('images/chem/photo_1_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 1' },
-  { src: asset('images/chem/photo_2_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 2' },
-  { src: asset('images/chem/photo_3_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 3' },
-  { src: asset('images/chem/photo_4_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 4' },
+  { src: asset('images/chem/photo_1_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 1', caption: '' },
+  { src: asset('images/chem/photo_2_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 2', caption: '' },
+  { src: asset('images/chem/photo_3_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 3', caption: '' },
+  { src: asset('images/chem/photo_4_2026-04-17_15-38-48.jpg'), alt: 'Практическая работа секции естественных наук 4', caption: '' },
 ];
 
 const chemAchievements: DirectionImage[] = [
-  { src: asset('images/chem/IMG_4930.JPG'), alt: 'Материалы секции естественных наук 1' },
-  { src: asset('images/chem/IMG_4931.JPG'), alt: 'Материалы секции естественных наук 2' },
-  { src: asset('images/chem/IMG_4932.JPG'), alt: 'Материалы секции естественных наук 3' },
-  { src: asset('images/chem/IMG_4933.JPG'), alt: 'Материалы секции естественных наук 4' },
-  { src: asset('images/chem/IMG_4934.JPG'), alt: 'Материалы секции естественных наук 5' },
-  { src: asset('images/chem/IMG_4935.JPG'), alt: 'Материалы секции естественных наук 6' },
+  { src: asset('images/chem/IMG_4930.JPG'), alt: 'Материалы секции естественных наук 1', caption: '' },
+  { src: asset('images/chem/IMG_4931.JPG'), alt: 'Материалы секции естественных наук 2', caption: '' },
+  { src: asset('images/chem/IMG_4932.JPG'), alt: 'Материалы секции естественных наук 3', caption: '' },
+  { src: asset('images/chem/IMG_4933.JPG'), alt: 'Материалы секции естественных наук 4', caption: '' },
+  { src: asset('images/chem/IMG_4934.JPG'), alt: 'Материалы секции естественных наук 5', caption: '' },
+  { src: asset('images/chem/IMG_4935.JPG'), alt: 'Материалы секции естественных наук 6', caption: '' },
 ];
 
 const directions: Direction[] = [
@@ -332,7 +333,9 @@ function DirectionContent({ direction }: { direction: Direction }) {
                     style={image.imageStyle}
                   />
                 </div>
-                <div className="px-4 py-3 font-body text-sm text-kaleo-earth/68">{image.alt}</div>
+                {image.caption !== '' && (
+                  <div className="px-4 py-3 font-body text-sm text-kaleo-earth/68">{image.caption ?? image.alt}</div>
+                )}
               </button>
             ))}
           </div>
@@ -360,7 +363,9 @@ function DirectionContent({ direction }: { direction: Direction }) {
                     style={image.imageStyle}
                   />
                 </div>
-                <div className="px-4 py-3 font-body text-sm text-kaleo-earth/68">{image.alt}</div>
+                {image.caption !== '' && (
+                  <div className="px-4 py-3 font-body text-sm text-kaleo-earth/68">{image.caption ?? image.alt}</div>
+                )}
               </button>
             ))}
           </div>
